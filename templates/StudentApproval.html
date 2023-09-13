@@ -15,10 +15,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for approval in stud_approvals %}
+            {% for approval in view_stud_approvals %}
             <tr>
-                <td>{{ approval.id }}</td>
-                <td>{{ approval.stud_id }}</td>
+                <td>{{ approval.sv_id }}</td>
+                <td>{{ approval.sv_name }}</td>
                 <td>{{ approval.status }}</td>
             </tr>
             {% endfor %}
