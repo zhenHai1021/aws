@@ -57,7 +57,7 @@ def AddSupervisor():
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
     try:
-        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, password, profile_image))
+        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
         db_conn.commit()
 
         
