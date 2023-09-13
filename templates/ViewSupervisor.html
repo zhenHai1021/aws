@@ -5,7 +5,8 @@
 </head>
 <body>
     <h1>Supervisor Details</h1>
-    <table>
+    <form action="/viewsupervisor" auto ="on" method="POST" enctype="multipart/form-data">
+        <table>
         <tr>
             <td>Supervisor ID:</td>
             <td>{{ id }}</td>
@@ -31,5 +32,7 @@
             <td><img src="{{ profile_image }}" alt="Profile Image" width="200"></td>
         </tr>
     </table>
+    </form>
+    
 </body>
 </html>
