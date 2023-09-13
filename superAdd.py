@@ -150,7 +150,7 @@ def view_stud_approvals():
         # Retrieve approval data from the "StudApproval" table
         statement = "SELECT id, stud_id, status FROM StudApproval"
         cursor = db_conn.cursor()
-        cursor.execute(approval_query)
+        cursor.execute(statement)
         
         stud_approvals = []
         for id, stud_id, status in approval_data:
