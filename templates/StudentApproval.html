@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Approvals</title>
 </head>
+
 <body>
     <h1>Student Approvals</h1>
-    
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th style = "color: red;">Student ID</th>
+                <th style="color: red;">Student ID</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            {% for approval in stud_approvals %}
-            <tr>
-                <td>{{ approval.id }}</td>
-                <td>{{ approval.stud_id }}</td>
-                <td>
-                    <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
-                        <select name="status">
-                            <option value="Approved" {% if approval.status == 'Approved' %} selected {% endif %}>Approved</option>
-                            <option value="Rejected" {% if approval.status == 'Rejected' %} selected {% endif %}>Rejected</option>
-                        </select>
-                        <button type="submit">Update</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
+            <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+
         </tbody>
     </table>
 </body>
+
 </html>
