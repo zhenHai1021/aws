@@ -47,7 +47,7 @@ def AddSupervisor():
     password = request.form['password']
     profile_image = request.files['profile_image']
 
-    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s. %s)"
+    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if profile_image.filename == "":
