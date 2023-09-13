@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>View Company Approvals</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Approvals</title>
+    <link rel="stylesheet" href="your_stylesheet.css"> <!-- Include your stylesheet for styling -->
 </head>
 <body>
-    <h1>Company Approvals</h1>
+    <h1>Student Approvals</h1>
+    
+    <!-- Display student approvals in a table -->
     <table>
         <thead>
             <tr>
@@ -15,23 +20,26 @@
             </tr>
         </thead>
         <tbody>
-            {% for com_approval in com_approvals %}
-                <tr>
-                    <td>{{ com_approval.id }}</td>
-                    <td>{{ com_approval.com_id }}</td>
-                    <td>{{ com_approval.status }}</td>
-                    <td>
-                        <form action="/manage_stud_approval/{{ com_approval.id }}" method="post">
-                            <select name="status">
-                                <option value="approve">Approve</option>
-                                <option value="reject">Reject</option>
-                            </select>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </td>
-                </tr>
+            {% for approval in stud_approvals %}
+            <tr>
+                <td>{{ approval.id }}</td>
+                <td>{{ approval.stud_id }}</td>
+                <td>{{ approval.status }}</td>
+                <td>
+                    <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
+                        <select name="status">
+                            <option value="Pending" {% if approval.status == 'Pending' %} selected {% endif %}>Pending</option>
+                            <option value="Approved" {% if approval.status == 'Approved' %} selected {% endif %}>Approved</option>
+                            <option value="Rejected" {% if approval.status == 'Rejected' %} selected {% endif %}>Rejected</option>
+                        </select>
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+    
+    <a href="/">Back to Home</a>
 </body>
 </html>
