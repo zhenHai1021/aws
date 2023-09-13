@@ -7,30 +7,30 @@
     <h1>Supervisor Details</h1>
     <form action="/viewsupervisor" auto ="on" method="POST" enctype="multipart/form-data">
         <table>
-        <tr>
-            <td>Supervisor ID:</td>
-            <td>{{ id }}</td>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td>{{ name }}</td>
-        </tr>
-        <tr>
-            <td>Programme:</td>
-            <td>{{ programme }}</td>
-        </tr>
-        <tr>
-            <td>Faculty:</td>
-            <td>{{ faculty }}</td>
-        </tr>
-        <tr>
-            <td>Age:</td>
-            <td>{{ age }}</td>
-        </tr>
-        <tr>
-            <td>Profile Image:</td>
-            <td><img src="{{ profile_image }}" alt="Profile Image" width="200"></td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Supervisor ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Programme</th>
+                <th>Faculty</th>
+                <th>Age</th>
+                <th>Profile Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supervisor in supervisors %}
+            <tr>
+                <td>{{ supervisor.sv_id }}</td>
+                <td>{{ supervisor.sv_name }}</td>
+                <td>{{ supervisor.sv_email }}</td>
+                <td>{{ supervisor.programme }}</td>
+                <td>{{ supervisor.faculty }}</td>
+                <td>{{ supervisor.age }}</td>
+                <td><img src="{{ supervisor.profile_image }}" alt="Profile Image" width="100"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     </form>
     
