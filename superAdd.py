@@ -14,7 +14,7 @@ customregion = "us-east-1"
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 
-app = Flask(__name__, static_foler='assets') #
+app = Flask(__name__, static_folder='assets')
 
 bucket = custombucket
 region = customregion
