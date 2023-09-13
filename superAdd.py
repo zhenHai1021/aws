@@ -57,7 +57,7 @@ def AddSupervisor():
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
     try:
-        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, password))
+        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, password, profile_image))
         db_conn.commit()
 
         
@@ -71,7 +71,7 @@ def AddSupervisor():
             s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image)\
             
             # Generate the object URL
-            object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"  
 
         except Exception as e:
             return str(e)
