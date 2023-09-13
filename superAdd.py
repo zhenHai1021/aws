@@ -34,7 +34,7 @@ def allowed_file(filename):
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('StudentApproval.html')
+    return render_template('ViewSupervisor.html')
 
 @app.route("/addsupervisor", methods=['POST'])
 def AddSupervisor():
@@ -122,66 +122,6 @@ def ViewSupervisor():
     
     except Exception as e:
         return str(e)
-
-    finally:
-        cursor.close()
-        
-@app.route("/manage_com_approval/<int:approval_id>", methods=['POST'])
-def manage_com_approval(approval_id):
-    try:
-        new_status = request.form['status']
-        statement = "UPDATE ComApproval SET status = %s WHERE id = %s"
-        cursor = db_conn.cursor()
-        cursor.execute(statement, (new_status, approval_id))
-        db_conn.commit()
-        flash("Approval status updated successfully", "success")
-        return redirect("/view_com_approvals")
-    
-    except Exception as e:
-        flash("Failed to update approval status", "error")
-        return redirect("/view_com_approvals")
-
-    finally:
-        cursor.close()
-
-@app.route("/view_stud_approvals", methods=['POST'])
-def view_stud_approvals():
-    try:
-        # Retrieve approval data from the "StudApproval" table
-        statement = "SELECT sv_id, sv_name FROM Supervisor"
-        cursor = db_conn.cursor()
-        cursor.execute(statement)
-        
-        stud_approvals = []
-        for id, stud_id, status in approval_data:
-            stud_approvals.append({
-                'sv_id': sv_id,
-                'sv_name': sv_name
-            })
-
-        return render_template('StudentApproval.html', stud_approvals=stud_approvals) 
-    
-    except Exception as e:
-        return str(e)
-
-    finally:
-        cursor.close()
-
-
-@app.route("/manage_stud_approval/<int:approval_id>", methods=['POST'])
-def manage_stud_approval(approval_id):
-    try:
-        new_status = request.form['status']
-        statement = "UPDATE StudApproval SET status = %s WHERE id = %s"
-        cursor = db_conn.cursor()
-        cursor.execute(statement, (new_status, approval_id))
-        db_conn.commit()
-        flash("Approval status updated successfully", "success")
-        return redirect("/view_stud_approvals")
-    
-    except Exception as e:
-        flash("Failed to update approval status", "error")
-        return redirect("/view_stud_approvals")
 
     finally:
         cursor.close()
