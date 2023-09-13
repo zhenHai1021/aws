@@ -148,16 +148,15 @@ def manage_com_approval(approval_id):
 def view_stud_approvals():
     try:
         # Retrieve approval data from the "StudApproval" table
-        statement = "SELECT id, stud_id, status FROM StudApproval"
+        statement = "SELECT sv_id, sv_name FROM Supervisor"
         cursor = db_conn.cursor()
         cursor.execute(statement)
         
         stud_approvals = []
         for id, stud_id, status in approval_data:
             stud_approvals.append({
-                'id': id,
-                'stud_id': stud_id,
-                'status': status
+                'sv_id': sv_id,
+                'sv_name': sv_name
             })
 
         return render_template('StudentApproval.html', stud_approvals=stud_approvals) 
