@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Supervisor</title>
 </head>
 <body>
-    <h1>View Supervisor</h1>
-    
-    <p>Name: {{ name }}</p>
-    <p>Email: {{ email }}</p>
-    <p>Programme: {{ programme }}</p>
-    <p>Faculty: {{ faculty }}</p>
-    <p>Age: {{ age }}</p>
-    <p>{{ profile_image }}</p>
-    
-    <br>
-    
-    <a href="/">Back</a>
+    <h1>Supervisor Details</h1>
+    <table>
+        <tr>
+            <td>Supervisor ID:</td>
+            <td>{{ id }}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{ name }}</td>
+        </tr>
+        <tr>
+            <td>Programme:</td>
+            <td>{{ programme }}</td>
+        </tr>
+        <tr>
+            <td>Faculty:</td>
+            <td>{{ faculty }}</td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td>{{ age }}</td>
+        </tr>
+        <tr>
+            <td>Profile Image:</td>
+            <td><img src="{{ profile_image }}" alt="Profile Image" width="200"></td>
+        </tr>
+    </table>
 </body>
 </html>
-
