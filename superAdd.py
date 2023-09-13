@@ -34,7 +34,7 @@ def allowed_file(filename):
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddSupervisor.html')
+    return render_template('StudentApproval.html')
 
 @app.route("/addsupervisor", methods=['POST'])
 def AddSupervisor():
