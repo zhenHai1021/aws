@@ -47,7 +47,7 @@ def AddSupervisor():
     password = request.form['password']
     profile_image = request.files['profile_image']
 
-    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s. %s)"
+    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if profile_image.filename == "":
@@ -79,7 +79,7 @@ def AddSupervisor():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddStudOutput.html', name=sv_name, email=sv_email, programme=programme, 
+    return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, 
                            faculty= faculty, age=age, object_url=object_url)
 
 @app.route("/searchsupervisor", methods=['POST'])
