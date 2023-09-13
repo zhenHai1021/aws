@@ -47,7 +47,7 @@ def AddSupervisor():
     password = request.form['password']
     profile_image = request.files['profile_image']
 
-    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s. %s)"
     cursor = db_conn.cursor()
 
     if profile_image.filename == "":
@@ -57,21 +57,20 @@ def AddSupervisor():
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
     try:
-        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
+        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, password, profile_image))
         db_conn.commit()
 
         
         # Upload image file in S3
         profile_image_in_s3 = "sv_id-" + str(sv_id) + "_image_file"
         s3 = boto3.resource('s3')
-        s3 = boto3.resource('s3')
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image)\
+            s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image)
             
             # Generate the object URL
-            object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"  
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"
 
         except Exception as e:
             return str(e)
@@ -80,7 +79,7 @@ def AddSupervisor():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, 
+    return render_template('AddStudOutput.html', name=sv_name, email=sv_email, programme=programme, 
                            faculty= faculty, age=age, object_url=object_url)
 
 @app.route("/searchsupervisor", methods=['POST'])
