@@ -6,34 +6,10 @@
 <body>
     <h1>Student Approvals</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Student ID</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for approval in stud_approvals %}
-            <tr>
-                <td>{{ approval.id }}</td>
-                <td>{{ approval.stud_id }}</td>
-                <td>{{ approval.status }}</td>
-                <td>
-                    <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
-                        <label for="status">Status:</label>
-                        <select name="status" id="status">
-                            <option value="Approved">Approved</option>
-                            <option value="Rejected">Rejected</option>
-                        </select>
-                        <button type="submit">Update Status</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <p>Name: {{ id }}</p>
+    <p>Email: {{ stud_id }}</p>
+    <p>Status: {{ status }}</p>
+   
+    
 </body>
 </html>
