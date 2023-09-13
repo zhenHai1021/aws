@@ -176,17 +176,15 @@ def manage_com_approval(approval_id):
 @app.route("/view_stud_approvals", methods=['GET'])
 def view_stud_approvals():
     try:
-        statement = "SELECT id, stud_id, status FROM StudApproval"
+        # Retrieve approval data from the "StudApproval" table
+        approval_query = "SELECT id, stud_id, status FROM StudApproval"
         cursor = db_conn.cursor()
-        cursor.execute(statement)
+        cursor.execute(approval_query)
+        approval_data = cursor.fetchall()
 
-        # Fetch all the results
-        results = cursor.fetchall()
-
-        stud_approvals = []  # List to store company approval data
-
-        for result in results:
-            id, stud_id, status = result
+        # Create a list to store approval data
+        stud_approvals = []
+        for id, stud_id, status in approval_data:
             stud_approvals.append({
                 'id': id,
                 'stud_id': stud_id,
@@ -218,7 +216,6 @@ def manage_stud_approval(approval_id):
 
     finally:
         cursor.close()
-
-
+        
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
