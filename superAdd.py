@@ -125,36 +125,7 @@ def ViewSupervisor():
 
     finally:
         cursor.close()
-
-@app.route("/view_com_approvals", methods=['GET'])
-def view_com_approvals():
-    try:
-        statement = "SELECT id, com_id, status FROM ComApproval"
-        cursor = db_conn.cursor()
-        cursor.execute(statement)
-
-        # Fetch all the results
-        results = cursor.fetchall()
-
-        com_approvals = []  # List to store company approval data
-
-        for result in results:
-            id, com_id, status = result
-            com_approvals.append({
-                'id': id,
-                'com_id': com_id,
-                'status': status
-            })
-
-        return render_template('CompanyApproval.html', com_approvals=com_approvals)
-    
-    except Exception as e:
-        return str(e)
-
-    finally:
-        cursor.close()
-
-
+        
 @app.route("/manage_com_approval/<int:approval_id>", methods=['POST'])
 def manage_com_approval(approval_id):
     try:
@@ -172,7 +143,33 @@ def manage_com_approval(approval_id):
 
     finally:
         cursor.close()
-        
+
+@app.route("/view_stud_approvals", methods=['GET'])
+def view_stud_approvals():
+    try:
+        # Retrieve approval data from the "StudApproval" table
+        approval_query = "SELECT id, stud_id, status FROM StudApproval"
+        cursor = db_conn.cursor()
+        cursor.execute(approval_query)
+        approval_data = cursor.fetchall()
+
+        # Create a list to store approval data
+        stud_approvals = []
+        for id, stud_id, status in approval_data:
+            stud_approvals.append({
+                'id': id,
+                'stud_id': stud_id,
+                'status': status
+            })
+
+        return render_template('StudentApproval.html', stud_approvals=stud_approvals)  # Pass stud_approvals to the template
+    
+    except Exception as e:
+        return str(e)
+
+    finally:
+        cursor.close()
+
 @app.route("/manage_stud_approval/<int:approval_id>", methods=['POST'])
 def manage_stud_approval(approval_id):
     try:
