@@ -162,13 +162,14 @@ def view_stud_approvals():
                 'status': status
             })
 
-        return render_template('StudentApproval.html', stud_approvals=stud_approvals)  # Pass stud_approvals to the template
+        return render_template('StudentApproval.html', stud_approvals=stud_approvals) 
     
     except Exception as e:
         return str(e)
 
     finally:
         cursor.close()
+
 
 @app.route("/manage_stud_approval/<int:approval_id>", methods=['POST'])
 def manage_stud_approval(approval_id):
