@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Approvals</title>
-    <link rel="stylesheet" href="your_stylesheet.css"> <!-- Include your stylesheet for styling -->
 </head>
 <body>
     <h1>Student Approvals</h1>
     
-    <!-- Display student approvals in a table -->
     <table>
         <thead>
             <tr>
@@ -24,11 +22,9 @@
             <tr>
                 <td>{{ approval.id }}</td>
                 <td>{{ approval.stud_id }}</td>
-                <td>{{ approval.status }}</td>
                 <td>
                     <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
                         <select name="status">
-                            <option value="Pending" {% if approval.status == 'Pending' %} selected {% endif %}>Pending</option>
                             <option value="Approved" {% if approval.status == 'Approved' %} selected {% endif %}>Approved</option>
                             <option value="Rejected" {% if approval.status == 'Rejected' %} selected {% endif %}>Rejected</option>
                         </select>
@@ -39,7 +35,5 @@
             {% endfor %}
         </tbody>
     </table>
-    
-    <a href="/">Back to Home</a>
 </body>
 </html>
