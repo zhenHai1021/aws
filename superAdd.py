@@ -107,7 +107,7 @@ def GetSupervisor():
         cursor.close()
 
 @app.route("/viewsupervisor", methods=['POST'])
-def Viewsupervisor():
+def view_supervisor():
     try:
         statement = "SELECT sv_id, sv_name, sv_email, programme, faculty, age, profile_image FROM Supervisor"
         cursor = db_conn.cursor()
@@ -137,6 +137,7 @@ def Viewsupervisor():
 
     finally:
         cursor.close()
+
 
         
 if __name__ == '__main__':
