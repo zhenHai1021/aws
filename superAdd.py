@@ -144,16 +144,14 @@ def manage_com_approval(approval_id):
     finally:
         cursor.close()
 
-@app.route("/view_stud_approvals", methods=['GET'])
+@app.route("/view_stud_approvals", methods=['POST'])
 def view_stud_approvals():
     try:
         # Retrieve approval data from the "StudApproval" table
-        approval_query = "SELECT id, stud_id, status FROM StudApproval"
+        statement = "SELECT id, stud_id, status FROM StudApproval"
         cursor = db_conn.cursor()
         cursor.execute(approval_query)
-        approval_data = cursor.fetchall()
-
-        # Create a list to store approval data
+        
         stud_approvals = []
         for id, stud_id, status in approval_data:
             stud_approvals.append({
