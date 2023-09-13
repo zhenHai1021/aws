@@ -6,10 +6,23 @@
 <body>
     <h1>Student Approvals</h1>
 
-    <p>Name: {{ id }}</p>
-    <p>Email: {{ stud_id }}</p>
-    <p>Status: {{ status }}</p>
-   
-    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student ID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for approval in stud_approvals %}
+            <tr>
+                <td>{{ approval.id }}</td>
+                <td>{{ approval.stud_id }}</td>
+                <td>{{ approval.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
