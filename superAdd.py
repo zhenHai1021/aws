@@ -45,7 +45,7 @@ def AddSupervisor():
     faculty = request.form['faculty']
     age = request.form['age']
     password = request.form['password']
-    profile_image = request.files['stud_image_file']
+    profile_image = request.files['profile_image']
 
     insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s. %s)"
     cursor = db_conn.cursor()
