@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Approvals</title>
 </head>
-
 <body>
     <h1>Student Approvals</h1>
 
@@ -14,23 +10,29 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th style="color: red;">Student ID</th>
+                <th>Student ID</th>
                 <th>Status</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
-                <label for="status">Status:</label>
-                <select name="status" id="status">
-                    <option value="Approved">Approved</option>
-                    <option value="Rejected">Rejected</option>
-                </select>
-                <button type="submit">Update Status</button>
-            </form>
-
+            {% for approval in stud_approvals %}
+            <tr>
+                <td>{{ approval.id }}</td>
+                <td>{{ approval.stud_id }}</td>
+                <td>{{ approval.status }}</td>
+                <td>
+                    <form method="POST" action="/manage_stud_approval/{{ approval.id }}">
+                        <label for="status">Status:</label>
+                        <select name="status" id="status">
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                        <button type="submit">Update Status</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>
-
 </html>
