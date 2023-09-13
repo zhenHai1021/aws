@@ -193,7 +193,7 @@ def view_stud_approvals():
                 'status': status
             })
 
-        return render_template('CompanyApproval.html', stud_approvals=stud_approvals)
+        return render_template('StudentApproval.html', stud_approvals=stud_approvals)
     
     except Exception as e:
         return str(e)
