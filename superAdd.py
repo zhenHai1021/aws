@@ -67,7 +67,7 @@ def AddSupervisor():
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image)
+            s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image, ContentType=profile_image.content_type)
             
             # Generate the object URL
             object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"
