@@ -107,24 +107,37 @@ def GetSupervisor():
         cursor.close()
 
 @app.route("/viewsupervisor", methods=['POST'])
-def ViewSupervisor():
+def Viewsupervisor():
     try:
-        statement = "SELECT sv_id, sv_name, sv_email, programme, faculty, age, profile_image From Supervisor"
+        statement = "SELECT sv_id, sv_name, sv_email, programme, faculty, age, profile_image FROM Supervisor"
         cursor = db_conn.cursor()
-        cursor.execute(statement,)
+        cursor.execute(statement)
 
-        # Fetch the result
-        result = cursor.fetchone()
+        # Fetch all the results
+        supervisor_data = cursor.fetchall()
 
-        if result:
-            sv_id, sv_name, programme, faculty, age, profile_image = result
-        return render_template('ViewSupervisor.html', name=sv_name, id=sv_id, programme=programme, faculty=faculty, age=age, profile_image=profile_image)
+        supervisors = []  # List to store supervisor data
+
+        for row in supervisor_data:
+            sv_id, sv_name, sv_email, programme, faculty, age, profile_image = row
+            supervisors.append({
+                'sv_id': sv_id,
+                'sv_name': sv_name,
+                'sv_email': sv_email,
+                'programme': programme,
+                'faculty': faculty,
+                'age': age,
+                'profile_image': profile_image
+            })
+
+        return render_template('ViewSupervisor.html', supervisors=supervisors)
     
     except Exception as e:
         return str(e)
 
     finally:
         cursor.close()
+
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
