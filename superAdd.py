@@ -158,7 +158,7 @@ def delete_supervisor():
         flask_flash("Failed to delete supervisor", "error")  # Rename flash here
         return redirect("/viewsupervisor")
 
-
+app.secret_key = 'wtf_is_this_key'
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
