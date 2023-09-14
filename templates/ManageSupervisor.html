@@ -51,9 +51,9 @@
                                 </div>                              		
                                     {% for row in data %}
                                     <div class="table-row">
-                                        <div class="serial">{{loop.index}}</div>
-                                        <div class="country">{{row[1]}}</div>
-                                        <div class="visit">{{row[2]}}</div>
+                                        <div class="serial">{{ loop.index }}</div>
+                                        <div class="country">{{ row[1] }}</div>
+                                        <div class="visit">{{ row[2] }}</div>
                                         <div class="percentage">
                                             <div class="button-group-area mt-10">
                                                 <a href="/viewsupervisor/{{ row[0] }}" class="genric-btn success circle arrow">View</a>
