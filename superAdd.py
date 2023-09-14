@@ -138,23 +138,17 @@ def view_supervisor():
     finally:
         cursor.close()
 
-@app.route("/manage_supervisor/<int:sv_id>", methods=['GET', 'POST'])
-def manage_supervisor(sv_id):
-    if request.method == 'POST':
-        # Handle the form submission for managing the supervisor with sv_id
-        # You can retrieve form data and update the supervisor here
-        # For example, update the supervisor's information in the database
+@app.route("/delete_supervisor", methods=['POST'])
+def delete_supervisor():
+    sv_id = request.form['sv_id']
 
-        flash("Supervisor updated successfully", "success")
-        return redirect("/viewsupervisor")
+    # Perform the deletion of the supervisor with sv_id from the database
+    # Example code to delete supervisor:
+    # delete_supervisor_by_id(sv_id)
 
-    # Here, you can retrieve the supervisor information by sv_id
-    # and display it in an edit form
-    # Example code to retrieve supervisor information:
-    # supervisor = get_supervisor_by_id(sv_id)
-    # return render_template('ManageSupervisor.html', supervisor=supervisor)
+    flash("Supervisor deleted successfully", "success")
+    return redirect("/viewsupervisor")
 
-    return render_template('ManageSupervisor.html', sv_id=sv_id)
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
