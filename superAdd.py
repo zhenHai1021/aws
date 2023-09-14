@@ -198,13 +198,9 @@ def update_status():
         cursor.execute(update_sql, (new_status, id))
         db_conn.commit()
         cursor.close()
-
-        flask_flash("Status updated successfully", "success")
+        
         return redirect("/studentapproval")
 
-    except Exception as e:
-        flask_flash("Failed to update status", "error")
-        return redirect("/studentapproval")
 
 app.secret_key = 'wtf_is_this_key'
     
