@@ -119,7 +119,10 @@ def view_supervisor():
         supervisors = []  # List to store supervisor data
 
         for result in results:
-            sv_id, sv_name, sv_email, programme, faculty, age, profile_image = result
+            sv_id, sv_name, sv_email, programme, faculty, age, profile_image_binary = result
+            # Convert profile_image_binary to base64
+            profile_image_base64 = base64.b64encode(profile_image_binary).decode('utf-8')
+            
             supervisors.append({
                 'sv_id': sv_id,
                 'sv_name': sv_name,
@@ -127,7 +130,7 @@ def view_supervisor():
                 'programme': programme,
                 'faculty': faculty,
                 'age': age,
-                'profile_image': profile_image,
+                'profile_image_base64': profile_image_base64,
             })
 
         return render_template('ViewSupervisor.html', supervisors=supervisors)
@@ -137,9 +140,6 @@ def view_supervisor():
 
     finally:
         cursor.close()
-
-
-
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
