@@ -140,14 +140,23 @@ def view_supervisor():
 
 @app.route("/delete_supervisor", methods=['POST'])
 def delete_supervisor():
-    sv_id = request.form['sv_id']
+    try:
+        sv_id = request.form['sv_id']
 
-    # Perform the deletion of the supervisor with sv_id from the database
-    # Example code to delete supervisor:
-    delete_supervisor_by_id(sv_id)
+        # SQL statement to delete a supervisor by sv_id
+        delete_sql = "DELETE FROM Supervisor WHERE sv_id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(delete_sql, (sv_id,))
+        db_conn.commit()
+        cursor.close()
 
-    flash("Supervisor deleted successfully", "success")
-    return redirect("/viewsupervisor")
+        flash("Supervisor deleted successfully", "success")
+        return redirect("/viewsupervisor")
+
+    except Exception as e:
+        flash("Failed to delete supervisor", "error")
+        return redirect("/viewsupervisor")
+
 
     
 if __name__ == '__main__':
