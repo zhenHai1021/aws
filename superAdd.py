@@ -106,17 +106,6 @@ def GetSupervisor():
     finally:
         cursor.close()
 
-@app.route("/viewsupervisor/<int: supervisor_id>")
-def view_supervisor():
-    try:
-        statement = "SELECT * FROM Supervisor"
-        cursor = db_conn.cursor()
-        cursor.execute(statement)
-        cursor.execute(statement, (supervisor_id))
-        result = cursor.fetchone()
-        
-    return render_template('ViewSupervisor.html', supervisor=result)
     
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
