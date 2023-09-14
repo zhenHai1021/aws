@@ -199,7 +199,7 @@ def update_status():
         db_conn.commit()
         cursor.close()
         
-        return redirect("/studApproval")
+        return redirect("/studentapproval")
 
     except Exception as e:
         return str(e)
