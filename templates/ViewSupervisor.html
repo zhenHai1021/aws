@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>View Supervisors</title>
     <style>
@@ -9,11 +10,14 @@
             margin-bottom: 20px;
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ccc;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -28,34 +32,37 @@
         }
     </style>
 </head>
+
 <body>
     <h1>View Supervisors</h1>
     <div class="progress-table-wrap">
-                            <div class="progress-table">
-                                <div class="table-head">
-                                    <div class="serial">No.</div>
-                                    <div class="country">Name</div>
-                                    <div class="visit">Faculty</div>
-                                   
-                                </div>                              		
-                                    {% for row in data %}
-                                    <div class="table-row">
-                                        <div class="serial">{{loop.index}}</div>
-                                        <div class="country">{{row[1]}}</div>
-                                        <div class="visit">{{row[2]}}</div>
-                                        <div class="percentage">
-                                            <div class="button-group-area mt-10">
-                                                <a href="/viewIntern/{{ row[0] }}" class="genric-btn success circle arrow">View</a>
-                                                <a href="#" class="genric-btn primary circle arrow">Edit</a>
-                                                <a href="#" class="genric-btn danger circle arrow">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                              
-                                {% endfor %}
+        <div class="progress-table">
+            <div class="table-head">
+                <div class="serial">No.</div>
+                <div class="country">Name</div>
+                <div class="visit">Faculty</div>
 
-                            </div>
-                        </div>
+            </div>
+            {% for row in data %}
+            {% for row in data %}
+            <div class="table-row">
+                <div class="serial">{{loop.index}}</div>
+                <div class="country">{{row[1]}}</div>
+                <div class="visit">{{row[2]}}</div>
+                <div class="percentage">
+                    <div class="button-group-area mt-10">
+                        <a href="/viewIntern/{{ row[0] }}" class="genric-btn success circle arrow">View</a>
+                        <a href="#" class="genric-btn primary circle arrow">Edit</a>
+                        <a href="#" class="genric-btn danger circle arrow">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
     </table>
 </body>
+
 </html>
