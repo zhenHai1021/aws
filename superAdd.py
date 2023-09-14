@@ -1,5 +1,6 @@
 from curses import flash
 from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, flash as flask_flash
 from pymysql import connections
 import os
 import boto3
@@ -150,11 +151,11 @@ def delete_supervisor():
         db_conn.commit()
         cursor.close()
 
-        flash("Supervisor deleted successfully", "success")
+        flask_flash("Supervisor deleted successfully", "success")  # Rename flash here
         return redirect("/viewsupervisor")
 
     except Exception as e:
-        flash("Failed to delete supervisor", "error")
+        flask_flash("Failed to delete supervisor", "error")  # Rename flash here
         return redirect("/viewsupervisor")
 
 
