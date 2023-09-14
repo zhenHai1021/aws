@@ -199,7 +199,10 @@ def update_status():
         db_conn.commit()
         cursor.close()
         
-        return redirect("/studentapproval")
+        return redirect("/studApproval")
+
+    except Exception as e:
+        return str(e)
 
 
 app.secret_key = 'wtf_is_this_key'
