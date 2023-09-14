@@ -144,7 +144,7 @@ def delete_supervisor():
 
     # Perform the deletion of the supervisor with sv_id from the database
     # Example code to delete supervisor:
-    # delete_supervisor_by_id(sv_id)
+    delete_supervisor_by_id(sv_id)
 
     flash("Supervisor deleted successfully", "success")
     return redirect("/viewsupervisor")
