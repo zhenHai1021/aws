@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Supervisors</title>
-    <!-- Add your CSS styles here -->
+    <!-- ... Your existing code ... -->
 </head>
 <body>
     <h1>View Supervisors</h1>
     <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Programme</th>
-                <th>Faculty</th>
-                <th>Age</th>
-                <th>Profile Image</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+        <!-- ... Table header ... -->
         <tbody>
             {% for supervisor in supervisors %}
                 <tr>
@@ -32,8 +20,14 @@
                         <img src="data:image/jpeg;base64,{{ supervisor.profile_image }}" alt="Profile Image">
                     </td>
                     <td>
-                        <form action="/manage_supervisor/{{ supervisor.sv_id }}" method="post">
-                            <button type="submit">Manage</button>
+                        <!-- Add Manage button with a link to /manage_supervisor -->
+                        <a href="/manage_supervisor/{{ supervisor.sv_id }}" class="btn btn-primary">Manage</a>
+                    </td>
+                    <td>
+                        <!-- Add Delete button with a form to submit to /delete_supervisor -->
+                        <form action="/delete_supervisor" method="POST">
+                            <input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
