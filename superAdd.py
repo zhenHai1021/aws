@@ -138,6 +138,23 @@ def view_supervisor():
     finally:
         cursor.close()
 
+@app.route("/manage_supervisor/<int:sv_id>", methods=['GET', 'POST'])
+def manage_supervisor(sv_id):
+    if request.method == 'POST':
+        # Handle the form submission for managing the supervisor with sv_id
+        # You can retrieve form data and update the supervisor here
+        # For example, update the supervisor's information in the database
+
+        flash("Supervisor updated successfully", "success")
+        return redirect("/viewsupervisor")
+
+    # Here, you can retrieve the supervisor information by sv_id
+    # and display it in an edit form
+    # Example code to retrieve supervisor information:
+    # supervisor = get_supervisor_by_id(sv_id)
+    # return render_template('ManageSupervisor.html', supervisor=supervisor)
+
+    return render_template('ManageSupervisor.html', sv_id=sv_id)
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
