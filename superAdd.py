@@ -106,6 +106,18 @@ def GetSupervisor():
     finally:
         cursor.close()
         
+@app.route("/viewsupervisor", methods=['POST'])
+def view_supervisor():   
+    statement = "SELECT * FROM Supervisor"
+    cursor = db_conn.cursor()
+    cursor.execute(statement)
+    result = cursor.fetchone()
+
+    if result:
+        return render_template('ViewSupervisor.html', supervisor=result)
+    else:
+        return "not found"
+
 @app.route("/managesupervisor", methods=['GET'])
 def ManageSupervisor():
     sv_id = 1
@@ -116,15 +128,6 @@ def ManageSupervisor():
     cursor.close()
     
     return render_template('ManageSupervisor.html', data=result)
-
-@app.route("/viewsupervisor", methods=['POST'])
-def view_supervisor():   
-    statement = "SELECT * FROM Supervisor"
-    cursor = db_conn.cursor()
-    cursor.execute(statement)
-    result = cursor.fetchone()
-
-    return render_template('ViewSupervisor.html', supervisor=result)
 
 @app.route('/editsupervisor/<int:sv_id>')
 def edit_supervisor(sv_id):
