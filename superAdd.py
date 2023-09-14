@@ -117,12 +117,11 @@ def ManageSupervisor():
     
     return render_template('ManageSupervisor.html', data=result)
 
-@app.route('/viewsupervisor/<int:sv_id>')
-def view_supervisor(sv_id):
-    supe = request.form['view']
-    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+@app.route("/viewsupervisor", methods=['POST'])
+def view_supervisor():   
+   statement = "SELECT * FROM Supervisor"
     cursor = db_conn.cursor()
-    cursor.execute(statement, (sv_id))
+    cursor.execute(statement)
     result = cursor.fetchone()
 
     return render_template('ViewSupervisor.html', supervisor=result)
