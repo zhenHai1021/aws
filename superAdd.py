@@ -112,11 +112,28 @@ def ManageSupervisor():
     statement = "SELECT sv_id, sv_name, email, programme, faculty From Supervisor WHERE sv_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (sv_id))
-
     result = cursor.fetchall()
     cursor.close()
     
-    return render_template('ViewSupervisor.html', data=result)
+    return render_template('ManageSupervisor.html', data=result)
+
+@app.route('/viewsupervisor/<int:sv_id>')
+def view_supervisor(sv_id):
+    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (sv_id))
+    result = cursor.fetchone()
+
+    return render_template('ViewSupervisor.html', supervisor=result)
+
+@app.route('/editsupervisor/<int:sv_id>')
+def edit_supervisor(sv_id):
+    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (sv_id))
+    result = cursor.fetchone()
+
+    return render_template('ViewSupervisor.html', supervisor=result)
 
     
 if __name__ == '__main__':
