@@ -119,6 +119,7 @@ def ManageSupervisor():
 
 @app.route('/viewsupervisor/<int:sv_id>')
 def view_supervisor(sv_id):
+    supe = request.form['view']
     statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (sv_id))
