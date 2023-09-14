@@ -161,9 +161,9 @@ def delete_supervisor():
 @app.route("/studentapproval", methods=['GET'])
 def stud_approval():
     try:
-        statement = "SELECT id, stud_id, status FROM StudApproval"
+        statement = "SELECT id, stud_id, status FROM StudApproval WHERE status = %s"
         cursor = db_conn.cursor()
-        cursor.execute(statement)
+        cursor.execute(statement, ("pending"))
 
         # Fetch all the results
         results = cursor.fetchall()
