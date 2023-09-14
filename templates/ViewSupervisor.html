@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Supervisor</title>
+    <title>View Supervisors</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Supervisor Details</h1>
-
+    <h1>View Supervisors</h1>
     <table>
         <thead>
             <tr>
-                <th>Supervisor ID</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Programme</th>
@@ -20,18 +44,17 @@
         </thead>
         <tbody>
             {% for supervisor in supervisors %}
-            <tr>
-                <td>{{ supervisor.sv_id }}</td>
-                <td>{{ supervisor.sv_name }}</td>
-                <td>{{ supervisor.sv_email }}</td>
-                <td>{{ supervisor.programme }}</td>
-                <td>{{ supervisor.faculty }}</td>
-                <td>{{ supervisor.age }}</td>
-                <td><img src="{{ supervisor.profile_image }}" alt="Profile Image" width="100"></td>
-            </tr>
+                <tr>
+                    <td>{{ supervisor.sv_id }}</td>
+                    <td>{{ supervisor.sv_name }}</td>
+                    <td>{{ supervisor.sv_email }}</td>
+                    <td>{{ supervisor.programme }}</td>
+                    <td>{{ supervisor.faculty }}</td>
+                    <td>{{ supervisor.age }}</td>
+                    <td><img src="{{ supervisor.profile_image }}" alt="Profile Image"></td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
-    
 </body>
 </html>
