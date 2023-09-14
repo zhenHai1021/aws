@@ -43,12 +43,15 @@
 
                         <div class="progress-table-wrap">
                             <div class="progress-table">
+                                <form action="/managesupervisor" auto ="on" method="POST" enctype="multipart/form-data">
+                                
                                 <div class="table-head">
                                     <div class="serial">No.</div>
                                     <div class="country">Name</div>
                                     <div class="visit">Programme</div>
                                     <div class="percentage">Faculty</div>
-                                </div>                              		
+                                </div>           
+                                
                                     {% for row in data %}
                                     <div class="table-row">
                                         <div class="serial">{{ loop.index }}</div>
@@ -64,7 +67,7 @@
                                     </div>
                               
                                 {% endfor %}
-
+</form>
                             </div>
                         </div>
                     </div>
