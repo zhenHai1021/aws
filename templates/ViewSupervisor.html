@@ -52,7 +52,7 @@
                     <td>{{ supervisor.faculty }}</td>
                     <td>{{ supervisor.age }}</td>
                     <td>
-                        <img src="data:image/jpeg;base64,{{ supervisor.profile_image|b64encode }}" alt="Profile Image">
+                        <img src="data:image/jpeg;base64,{{ supervisor.profile_image }}" alt="Profile Image">
                     </td>
                 </tr>
             {% endfor %}
