@@ -119,7 +119,7 @@ def ManageSupervisor():
 
 @app.route("/viewsupervisor", methods=['POST'])
 def view_supervisor():   
-   statement = "SELECT * FROM Supervisor"
+    statement = "SELECT * FROM Supervisor"
     cursor = db_conn.cursor()
     cursor.execute(statement)
     result = cursor.fetchone()
