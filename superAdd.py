@@ -109,7 +109,7 @@ def GetSupervisor():
 @app.route("/managesupervisor", methods=['GET'])
 def ManageSupervisor():
     sv_id = 1
-    statement = "SELECT sv_id, sv_name, email, programme, faculty WHERE sv_id = %s"
+    statement = "SELECT sv_id, sv_name, email, programme, faculty From Supervisor WHERE sv_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (sv_id))
 
