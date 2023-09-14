@@ -158,6 +158,54 @@ def delete_supervisor():
         flask_flash("Failed to delete supervisor", "error")  # Rename flash here
         return redirect("/viewsupervisor")
 
+@app.route("/studentapproval", methods=['GET'])
+def stud_approval():
+    try:
+        statement = "SELECT id, stud_id, status FROM StudApproval"
+        cursor = db_conn.cursor()
+        cursor.execute(statement)
+
+        # Fetch all the results
+        results = cursor.fetchall()
+
+        stud_approvals = []  # List to store StudApproval data
+
+        for result in results:
+            id, stud_id, status = result
+            stud_approvals.append({
+                'id': id,
+                'stud_id': stud_id,
+                'status': status,
+            })
+
+        return render_template('StudentApproval.html', stud_approvals=stud_approvals)
+
+    except Exception as e:
+        return str(e)
+
+    finally:
+        cursor.close()
+
+@app.route("/updatestatus", methods=['POST'])
+def update_status():
+    try:
+        id = request.form['id']
+        new_status = request.form['status']
+
+        # SQL statement to update the status of a StudApproval entry by id
+        update_sql = "UPDATE StudApproval SET status = %s WHERE id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(update_sql, (new_status, id))
+        db_conn.commit()
+        cursor.close()
+
+        flask_flash("Status updated successfully", "success")
+        return redirect("/studentapproval")
+
+    except Exception as e:
+        flask_flash("Failed to update status", "error")
+        return redirect("/studentapproval")
+
 app.secret_key = 'wtf_is_this_key'
     
 if __name__ == '__main__':
