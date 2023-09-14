@@ -107,7 +107,7 @@ def GetSupervisor():
         cursor.close()
         
 @app.route("/managesupervisor", methods=['GET'])
-def ManageSupervisor:
+def ManageSupervisor():
     sv_id = 1
     statement = "SELECT sv_id, sv_name, email, programme, faculty WHERE sv_id = %s"
     cursor = db_conn.cursor()
