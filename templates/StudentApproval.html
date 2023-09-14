@@ -25,7 +25,7 @@
             <td>{{ approval.stud_id }}</td>
             <td>{{ approval.status }}</td>
             <td>
-                <form method="POST" action="/updateStatus">
+                <form method="POST" action="/updatestatus">
                     <input type="hidden" name="id" value="{{ approval.id }}">
                     <select name="status">
                         <option value="approved">Approved</option>
