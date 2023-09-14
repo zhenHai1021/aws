@@ -106,37 +106,37 @@ def GetSupervisor():
     finally:
         cursor.close()
         
-@app.route("/viewsupervisor", methods=['POST'])
-def view_supervisor():   
-    statement = "SELECT * FROM Supervisor"
-    cursor = db_conn.cursor()
-    cursor.execute(statement)
-    result = cursor.fetchone()
+@app.route("/viewsupervisor", methods=['GET'])
+def view_supervisor():
+    try:
+        statement = "SELECT sv_id, sv_name, sv_email, programme, faculty, age, profile_image FROM Supervisor"
+        cursor = db_conn.cursor()
+        cursor.execute(statement)
 
-    if result:
-        return render_template('ViewSupervisor.html', supervisor=result)
-    else:
-        return "not found"
+        # Fetch all the results
+        results = cursor.fetchall()
 
-@app.route("/managesupervisor", methods=['GET'])
-def ManageSupervisor():
-    sv_id = 1
-    statement = "SELECT sv_id, sv_name, email, programme, faculty From Supervisor WHERE sv_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (sv_id))
-    result = cursor.fetchall()
-    cursor.close()
-    
-    return render_template('ManageSupervisor.html', data=result)
+        supervisors = []  # List to store supervisor data
 
-@app.route('/editsupervisor/<int:sv_id>')
-def edit_supervisor(sv_id):
-    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (sv_id))
-    result = cursor.fetchone()
+        for result in results:
+            sv_id, sv_name, sv_email, programme, faculty, age, profile_image = result
+            supervisors.append({
+                'sv_id': sv_id,
+                'sv_name': sv_name,
+                'sv_email': sv_email,
+                'programme': programme,
+                'faculty': faculty,
+                'age': age,
+                'profile_image': profile_image,
+            })
 
-    return render_template('ViewSupervisor.html', supervisor=result)
+        return render_template('ViewSupervisor.html', supervisors=supervisors)
+
+    except Exception as e:
+        return str(e)
+
+    finally:
+        cursor.close()
 
     
 if __name__ == '__main__':
