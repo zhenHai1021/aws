@@ -30,38 +30,32 @@
 </head>
 <body>
     <h1>View Supervisors</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Programme</th>
-                <th>Faculty</th>
-                <th>Age</th>
-                <th>Profile Image</th>
-            </tr>
-        </thead>
-        <!-- ... (previous HTML code) -->
+    <div class="progress-table-wrap">
+                            <div class="progress-table">
+                                <div class="table-head">
+                                    <div class="serial">No.</div>
+                                    <div class="country">Name</div>
+                                    <div class="visit">Faculty</div>
+                                   
+                                </div>                              		
+                                    {% for row in data %}
+                                    <div class="table-row">
+                                        <div class="serial">{{loop.index}}</div>
+                                        <div class="country">{{row[1]}}</div>
+                                        <div class="visit">{{row[2]}}</div>
+                                        <div class="percentage">
+                                            <div class="button-group-area mt-10">
+                                                <a href="/viewIntern/{{ row[0] }}" class="genric-btn success circle arrow">View</a>
+                                                <a href="#" class="genric-btn primary circle arrow">Edit</a>
+                                                <a href="#" class="genric-btn danger circle arrow">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                {% endfor %}
 
-<tbody>
-    {% for supervisor in supervisors %}
-        <tr>
-            <td>{{ supervisor.sv_id }}</td>
-            <td>{{ supervisor.sv_name }}</td>
-            <td>{{ supervisor.sv_email }}</td>
-            <td>{{ supervisor.programme }}</td>
-            <td>{{ supervisor.faculty }}</td>
-            <td>{{ supervisor.age }}</td>
-            <td>
-                <img src="data:image/jpeg;base64,{{ supervisor.profile_image_base64 }}" alt="Profile Image">
-            </td>
-        </tr>
-    {% endfor %}
-</tbody>
-
-<!-- ... (rest of HTML code) -->
-
+                            </div>
+                        </div>
     </table>
 </body>
 </html>
