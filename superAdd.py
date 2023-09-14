@@ -105,41 +105,18 @@ def GetSupervisor():
 
     finally:
         cursor.close()
+        
+@app.route("/managesupervisor", methods=['GET'])
+def ManageSupervisor:
+    sv_id = 1
+    statement = "SELECT sv_id, sv_name, email, programme, faculty WHERE sv_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (sv_id))
 
-@app.route("/viewsupervisor", methods=['GET'])
-def view_supervisor():
-    try:
-        statement = "SELECT sv_id, sv_name, sv_email, programme, faculty, age, profile_image FROM Supervisor"
-        cursor = db_conn.cursor()
-        cursor.execute(statement)
-
-        # Fetch all the results
-        results = cursor.fetchall()
-
-        supervisors = []  # List to store supervisor data
-
-        for result in results:
-            sv_id, sv_name, sv_email, programme, faculty, age, profile_image_binary = result
-            # Convert profile_image_binary to base64
-            profile_image_base64 = base64.b64encode(profile_image_binary).decode('utf-8')
-            
-            supervisors.append([
-                sv_id,
-                sv_name,
-                sv_email,
-                programme,
-                faculty,
-                age,
-                profile_image_base64,
-            ])
-
-        return render_template('ViewSupervisor.html', supervisors=supervisors)
-
-    except Exception as e:
-        return str(e)
-
-    finally:
-        cursor.close()
+    result = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('ViewSupervisor.html', data=result)
 
     
 if __name__ == '__main__':
