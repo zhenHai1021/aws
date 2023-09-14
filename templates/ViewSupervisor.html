@@ -42,21 +42,26 @@
                 <th>Profile Image</th>
             </tr>
         </thead>
-        <tbody>
-            {% for supervisor in supervisors %}
-                <tr>
-                    <td>{{ supervisor.sv_id }}</td>
-                    <td>{{ supervisor.sv_name }}</td>
-                    <td>{{ supervisor.sv_email }}</td>
-                    <td>{{ supervisor.programme }}</td>
-                    <td>{{ supervisor.faculty }}</td>
-                    <td>{{ supervisor.age }}</td>
-                    <td>
-                        <img src="data:image/jpeg;base64,{{ supervisor.profile_image }}" alt="Profile Image">
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
+        <!-- ... (previous HTML code) -->
+
+<tbody>
+    {% for supervisor in supervisors %}
+        <tr>
+            <td>{{ supervisor.sv_id }}</td>
+            <td>{{ supervisor.sv_name }}</td>
+            <td>{{ supervisor.sv_email }}</td>
+            <td>{{ supervisor.programme }}</td>
+            <td>{{ supervisor.faculty }}</td>
+            <td>{{ supervisor.age }}</td>
+            <td>
+                <img src="data:image/jpeg;base64,{{ supervisor.profile_image_base64 }}" alt="Profile Image">
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+<!-- ... (rest of HTML code) -->
+
     </table>
 </body>
 </html>
