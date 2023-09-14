@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Student Approvals</title>
-</head>
-<body>
-    <h1>Student Approvals</h1>
 
+<head>
+    <title>Student Approval</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="your-styles.css"> <!-- Add your CSS styles here -->
+</head>
+
+<body>
+    <h1>Student Approval</h1>
+    
     <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Student ID</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for approval in view_stud_approvals %}
-            <tr>
-                <td>{{ approval.sv_id }}</td>
-                <td>{{ approval.sv_name }}</td>
-                <td>{{ approval.status }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+        <tr>
+            <th>ID</th>
+            <th>Student ID</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for approval in stud_approvals %}
+        <tr>
+            <td>{{ approval.id }}</td>
+            <td>{{ approval.stud_id }}</td>
+            <td>{{ approval.status }}</td>
+            <td>
+                <form method="POST" action="/updateStatus">
+                    <input type="hidden" name="id" value="{{ approval.id }}">
+                    <select name="status">
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
     </table>
+
 </body>
+
 </html>
