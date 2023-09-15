@@ -48,7 +48,7 @@ def AddAdmin():
     cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
     db_conn.commit()
     
-    return render_template('AdminIndex'.html')  
+    return render_template('AdminIndex.html')  
       
 
     
