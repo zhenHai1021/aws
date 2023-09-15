@@ -103,10 +103,8 @@ def delete_admin():
         cursor.close()
 
         return redirect('/viewadmin')
+     return "Method Not Allowed", 405  # Handle GET requests with an error response
 
-    except Exception as e:
-        flash("Failed to delete admin", "error")
-        return redirect('/viewadmin')
 
 @app.route("/addsupervisor", methods=['POST'])
 @csrf.exempt  
