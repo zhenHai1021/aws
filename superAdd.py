@@ -49,10 +49,10 @@ def AddAdmin():
         cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
         db_conn.commit()
 
-        return "Admin added successfully!"  
+        return render_template('AdminIndex.html')  
       
 
-    return "Invalid request"
+    
 
 @app.route("/addsupervisor", methods=['POST'])
 def AddSupervisor():
