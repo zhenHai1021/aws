@@ -37,6 +37,10 @@ def allowed_file(filename):
 def home():
     return render_template('AdminIndex.html')
 
+@app.route("/Dashboard", methods=['GET', 'POST'])
+def AddingAdmin():
+    return render_template('Dashboard.html')
+
 @app.route('/addadmin', methods=['POST'])
 def add_admin():
     if request.method == 'POST':
