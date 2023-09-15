@@ -73,7 +73,7 @@ def add_admin():
         db_conn.commit()
 
         # Redirect to a success page or do something else as needed
-        return render_template('AdminIndex.html')
+        return redirect('/viewadmin')
 
     return render_template('AdminIndex.html')  
 
