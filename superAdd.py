@@ -37,7 +37,7 @@ def allowed_file(filename):
 def home():
     return render_template('AdminIndex.html')
 
-@app.route('/addadmin', methods=['POST'])
+@app.route('/addadmin', methods=['POST', 'GET'])
 def AddAdmin():
     if request.method == 'POST':
         id = request.form['id']
