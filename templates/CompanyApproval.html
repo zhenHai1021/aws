@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Student Approvals</title>
+</head>
+<body>
+    <h1>Company Approvals</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company ID</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for com_approval in com_approvals %}
+                <tr>
+                    <td>{{ com_approval.id }}</td>
+                    <td>{{ com_approval.com_id }}</td>
+                    <td>{{ com_approval.status }}</td>
+                    <td>
+                        <form action="/manage_com_approval/{{ com_approval.id }}" method="post" auto ="on" enctype="multipart/form-data">
+                            <select name="status">
+                                <option value="approve">Approve</option>
+                                <option value="reject">Reject</option>
+                            </select>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
