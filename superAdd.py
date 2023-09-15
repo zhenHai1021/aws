@@ -81,7 +81,7 @@ def add_admin():
 def view_admin():
     try:
         cursor = db_conn.cursor()
-        cursor.execute("SELECT id, name, email FROM Admin")
+        cursor.execute("SELECT * FROM Admin")
         admins = cursor.fetchall()
         cursor.close()
 
