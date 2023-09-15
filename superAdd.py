@@ -108,7 +108,7 @@ def GetSupervisor():
         cursor.close()
         
 @app.route("/viewsupervisor", methods=['GET'])
-def view_supervisor():
+def ViewSupervisor():
     try:
         statement = "SELECT sv_id, sv_name, sv_email, programme, faculty, age, profile_image FROM Supervisor"
         cursor = db_conn.cursor()
@@ -139,8 +139,8 @@ def view_supervisor():
     finally:
         cursor.close()
 
-@app.route("/delete_supervisor", methods=['POST'])
-def delete_supervisor():
+@app.route("/deletesupervisor", methods=['POST'])
+def DeleteSupervisor():
     try:
         sv_id = request.form['sv_id']
 
@@ -159,7 +159,7 @@ def delete_supervisor():
         return redirect("/viewsupervisor")
 
 @app.route("/studentapproval", methods=['GET'])
-def stud_approval():
+def StudAproval():
     try:
         statement = "SELECT id, stud_id, status FROM StudApproval WHERE status = %s"
         cursor = db_conn.cursor()
@@ -186,8 +186,8 @@ def stud_approval():
     finally:
         cursor.close()
 
-@app.route("/updatestatus", methods=['POST'])
-def update_status():
+@app.route("/updatestudentstatus", methods=['POST'])
+def UpdateStudStatus():
     try:
         id = request.form['id']
         new_status = request.form['status']
@@ -200,6 +200,52 @@ def update_status():
         cursor.close()
         
         return redirect("/studentapproval")
+
+    except Exception as e:
+        return str(e)
+
+@app.route("/companyapproval", methods=['GET'])
+def ComApproval():
+    try:
+        statement = "SELECT id, com_id, status FROM ComApproval WHERE status = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, ("pending"))
+
+        # Fetch all the results
+        results = cursor.fetchall()
+
+        com_approvals = []  # List to store StudApproval data
+
+        for result in results:
+            id, com_id, status = result
+            com_approvals.append({
+                'id': id,
+                'com_id': stud_id,
+                'status': status,
+            })
+
+        return render_template('CompanyApproval.html', com_approvals=com_approvals)
+
+    except Exception as e:
+        return str(e)
+
+    finally:
+        cursor.close()
+
+@app.route("/updatecompanystatus", methods=['POST'])
+def UpdateComStatus():
+    try:
+        id = request.form['id']
+        new_status = request.form['status']
+
+        # SQL statement to update the status of a StudApproval entry by id
+        update_sql = "UPDATE ComApproval SET status = %s WHERE id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(update_sql, (new_status, id))
+        db_conn.commit()
+        cursor.close()
+        
+        return redirect("/companyapproval")
 
     except Exception as e:
         return str(e)
