@@ -1,41 +1,122 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- ... Your existing code ... -->
-</head>
-<body>
-    <h1>View Supervisors</h1>
-    <table>
-        <!-- ... Table header ... -->
-        <tbody>
-            {% for supervisor in supervisors %}
-                <tr>
-                    <td>{{ supervisor.sv_id }}</td>
-                    <td>{{ supervisor.sv_name }}</td>
-                    <td>{{ supervisor.sv_email }}</td>
-                    <td>{{ supervisor.programme }}</td>
-                    <td>{{ supervisor.faculty }}</td>
-                    <td>{{ supervisor.age }}</td>
-                    <td>
-                        <img src="data:image/jpeg;base64,{{ supervisor.profile_image }}" alt="Profile Image">
-                    </td>
-                    <td>
-                        <!-- Add Manage button with a link to /manage_supervisor -->
-                        <a href="/manage_supervisor/{{ supervisor.sv_id }}" class="btn btn-primary">Manage</a>
-                    </td>
-                    <td>
-                        <!-- Add Delete button with a form to submit to /delete_supervisor -->
-                        <form action="/delete_supervisor" method="POST">
-                            <input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+<!doctype html>
+<html class="no-js" lang="zxx"></html>
 
-                       
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-         <a href="/">Back</a>
-    </table>
-</body>
+    <!--Head -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Manage Supervisor</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+        <!-- CSS here -->
+            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+            <link rel="stylesheet" href="assets/css/flaticon.css">
+            <link rel="stylesheet" href="assets/css/price_rangs.css">
+            <link rel="stylesheet" href="assets/css/slicknav.css">
+            <link rel="stylesheet" href="assets/css/animate.min.css">
+            <link rel="stylesheet" href="assets/css/magnific-popup.css">
+            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="assets/css/themify-icons.css">
+            <link rel="stylesheet" href="assets/css/slick.css">
+            <link rel="stylesheet" href="assets/css/nice-select.css">
+            <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+<body>
+
+<div class="container box_1170">
+          
+                <div class="whole-wrap" style="padding-left: 5%; padding-right:5%;">
+
+                    <div class="section-top-border">
+
+                        <div class="progress-table-wrap">
+                            <div class="progress-table">
+                                <div class="table-head">
+                                    <div class="serial">No.</div>
+                                    <div class="serial">ID</div>
+                                    <div class="country">Name</div>
+                                    <div class="visit">Email</div>
+                                    <div class="percentage">Programme</div>
+                                    <div class="percentage">Faculty</div>
+                                    <div class="serial">Age</div>
+                                    <div class="visit">Profile Image</div>
+                                </div>                              		
+                      
+                                    {% for supervisor in supervisors %}
+                                    <div class="table-row">
+                                        <div class="serial">{{ loop.index }}</div>
+                                        <div class="serial">{{ supervisor.sv_id }}</div>
+                                        <div class="country">{{ supervisor.sv_name }}</div>
+                                        <div class="visit">{{ supervisor.sv_email }}</div>
+                                        <div class="percentage">{{ supervisor.programme }}</div>
+                                        <div class="percentage">{{ supervisor.faculty }}</div>
+                                        <div class="serial">{{ supervisor.age }}</div>
+                                        <div class="visit"><img src="data:image/jpeg;base64,{{ supervisor.profile_image }}" alt="Profile Image"></div>
+
+                                   
+                                        <div class="percentage">
+                                            <div class="button-group-area mt-10">
+                                                <a href="" class="genric-btn success circle arrow">View</a> 
+
+                                                <form action="/delete_supervisor" method="POST">
+                                                <input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
+                                                    <button type="submit" class="genric-btn danger circle arrow">Delete</button>
+                                                </form>
+                  
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+   
+        </div>
+
+
+
+    
+     <!-- JS here -->
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/price_rangs.js"></script>
+        
+		<!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+		<!-- Scrollup, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+		<script src="./assets/js/jquery.sticky.js"></script>
+        
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+    </body>
 </html>
