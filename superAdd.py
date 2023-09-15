@@ -43,7 +43,7 @@ def AddingAdmin():
 
 @app.route("/Supervisor", methods=['GET', 'POST'])
 def ManagingSupervisor():
-    return render_template('ViewSupervisor.html')
+    return render_template('viewsupervisor')
 
 @app.route("/Create", methods=['GET', 'POST'])
 def AddingSupervisor():
