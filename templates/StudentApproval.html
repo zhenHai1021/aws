@@ -85,7 +85,7 @@
 								<div class="serial">Student Approval ID</div>
 								<div class="country">Student ID</div>
 								<div class="country">Status</div>
-                                <div class="country">Action</div>
+								<div class="country">Action</div>
 							</div>
 
 							{% for approval in stud_approvals %}
@@ -94,31 +94,27 @@
 								<div class="serial">{{ approval.id }}</div>
 								<div class="country">{{ approval.stud_id }}</div>
 								<div class="country">{{ approval.status }}</div>
-                             
-								<div class="percentage">
-									<div class="button-group-area mt-10">
-										<form action="/updatestudentstatus" method="POST">
-											<input type="hidden" name="id" value="{{ approval.id }}">
-                                            <div class="nice-select open" tabindex="0"><span class="current">Status</span>
-                                                <ul class="list">
-                                                    <li value="pending" class="option selected focus">Pending</li>
-                                                    <li value="approved" class="option">Approved</li>
-                                                    <li value="rejected" class="option">Rejected</li>
-                                                </ul>
-                                            </div>
-                                                    
-										</form>
-									</div>
+
+								<div class="default-select" id="default-select" "="">
+									<form action=" /updatestudentstatus" method="POST">
+									<input type="hidden" name="id" value="{{ approval.id }}">
+									<select style="display: none;" name="status">
+										<option value="pending">Pending/option>
+										<option value="approved">Approve</option>
+										<option value="rejected">Reject</option>
+									</select>
+									<button type="submit">Update</button>
+									</form>
 								</div>
-
 							</div>
-
-							{% endfor %}
-
 						</div>
+
+						{% endfor %}
+
 					</div>
 				</div>
 			</div>
+		</div>
 
 		</div>
 
