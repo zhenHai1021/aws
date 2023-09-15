@@ -192,7 +192,6 @@ def DeleteSupervisor():
 
 
 @app.route("/studentapproval", methods=['GET'])
-@csrf.exempt  
 def StudAproval():
     try:
         statement = "SELECT id, stud_id, status FROM StudApproval WHERE status = %s"
@@ -220,7 +219,8 @@ def StudAproval():
     finally:
         cursor.close()
 
-@app.route("/updatestudentstatus", methods=['POST'])
+@app.route("/updatestudentstatus", methods=['POST', 'GET'])
+@csrf.exempt  
 def UpdateStudStatus():
     try:
         id = request.form['id']
