@@ -110,8 +110,7 @@ def AddSupervisor():
 
     print("all modification done...")
     return render_template('/Supervisor')
-   # return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, 
-                           faculty=faculty, age=age, object_url=object_url)
+   # return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, faculty=faculty, age=age, object_url=object_url)
 
 
 @app.route("/searchsupervisor", methods=['POST'])
