@@ -42,7 +42,7 @@ def AddingAdmin():
     return render_template('Dashboard.html')
 
 @app.route("/Supervisor", methods=['GET', 'POST'])
-def AddingAdmin():
+def ManageSupervisor():
     return render_template('ViewSupervisor.html')
 
 @app.route('/addadmin', methods=['POST'])
