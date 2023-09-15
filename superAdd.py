@@ -1,7 +1,7 @@
 from curses import flash
-from flask import Flask, redirect, render_template, request
 from flask import Flask, redirect, render_template, request, flash as flask_flash
 from pymysql import connections
+from flask_wtf.csrf import CSRFProtect
 import os
 import boto3
 import botocore
@@ -16,6 +16,8 @@ customregion = "us-east-1"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 
 app = Flask(__name__, static_folder='assets')
+#encrypt
+csrf = CSRFProtect(app)
 
 bucket = custombucket
 region = customregion
@@ -169,9 +171,9 @@ def ViewSupervisor():
     finally:
         cursor.close()
 
-@app.route("/deletesupervisor", methods=['POST'])
+@app.route("/deletesupervisor", methods=['POST', 'GET'])
 def DeleteSupervisor():
-    try:
+    if request.method == 'POST':
         sv_id = request.form['sv_id']
 
         # SQL statement to delete a supervisor by sv_id
@@ -181,12 +183,11 @@ def DeleteSupervisor():
         db_conn.commit()
         cursor.close()
 
-        flask_flash("Supervisor deleted successfully", "success")  # Rename flash here
+        flash("Supervisor deleted successfully", "success")
         return redirect("/viewsupervisor")
 
-    except Exception as e:
-        flask_flash("Failed to delete supervisor", "error")  # Rename flash here
-        return redirect("/viewsupervisor")
+    return "Method Not Allowed", 405  # Handle GET requests with an error response
+
 
 @app.route("/studentapproval", methods=['GET'])
 def StudAproval():
@@ -281,7 +282,8 @@ def UpdateComStatus():
         return str(e)
 
 
-app.secret_key = 'wtf_is_this_key'
+
     
 if __name__ == '__main__':
+    app.secret_key = 'zhenwei_key'
     app.run(host='0.0.0.0', port=80, debug=True)
