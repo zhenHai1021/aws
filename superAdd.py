@@ -220,7 +220,7 @@ def ComApproval():
             id, com_id, status = result
             com_approvals.append({
                 'id': id,
-                'com_id': stud_id,
+                'com_id': com_id,
                 'status': status,
             })
 
