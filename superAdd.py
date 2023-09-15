@@ -41,6 +41,10 @@ def home():
 def AddingAdmin():
     return render_template('Dashboard.html')
 
+@app.route("/Supervisor", methods=['GET', 'POST'])
+def AddingAdmin():
+    return render_template('ViewSupervisor.html')
+
 @app.route('/addadmin', methods=['POST'])
 def add_admin():
     if request.method == 'POST':
