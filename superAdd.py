@@ -35,7 +35,7 @@ def allowed_file(filename):
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddSupervisor.html')
+    return render_template('AdminIndex.html')
 
 @app.route('/addadmin', methods=['POST'])
 def AddAdmin():
