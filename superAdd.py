@@ -54,7 +54,7 @@ def add_admin():
         db_conn.commit()
 
         # Redirect to a success page or do something else as needed
-        return "Admin added successfully!"
+        return render_template('AdminIndex.html')
 
     return render_template('AdminIndex.html')  
       
