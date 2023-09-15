@@ -182,8 +182,7 @@ def DeleteSupervisor():
         cursor.execute(delete_sql, (sv_id,))
         db_conn.commit()
         cursor.close()
-
-        flash("Supervisor deleted successfully", "success")
+        
         return redirect("/viewsupervisor")
 
     return "Method Not Allowed", 405  # Handle GET requests with an error response
