@@ -50,7 +50,7 @@ def AddAdmin():
         cursor.execute(insert_sql, (id, name, email, password))
         db_conn.commit()
 
-return render_template('AddAdminOutput.html', id=id, name=name, email=email, password=password)
+    return render_template('AddAdminOutput.html', id=id, name=name, email=email, password=password)
 
 
 @app.route("/addsupervisor", methods=['POST'])
