@@ -38,6 +38,22 @@ def home():
     return render_template('AddSupervisor.html')
 
 @app.route("/addsupervisor", methods=['POST'])
+def AddAdmin():
+    id = request.form['id']
+    name = request.form['name']
+    email = request.form['email']
+    password = request.form['password']
+    
+    insert_sql = "INSERT INTO Admin VALUES (%s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute(insert_sql, (id, name, email, password))
+        db_conn.commit()
+
+return render_template('AddAdminOutput.html', id=id, name=name, email=email, password=password)
+
+
+@app.route("/addsupervisor", methods=['POST'])
 def AddSupervisor():
     sv_id = request.form['sv_id']
     sv_name = request.form['sv_name']
