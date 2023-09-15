@@ -91,14 +91,13 @@ def view_admin():
         return str(e)
 
 @app.route('/deleteadmin', methods=['POST', 'GET'])
-@csrf.exempt 
 def delete_admin():
      if request.method == 'POST':
         id=request.form['id']
 
         delete_sql="DELETE FROM Admin WHERE id = %s"
         cursor = db_conn.cursor()
-        cursor.execute(delete_sql, (id,))
+        cursor.execute(delete_sql, (id))
         db_conn.commit()
         cursor.close()
 
