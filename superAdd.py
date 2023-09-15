@@ -51,6 +51,10 @@ def ManagingSupervisor():
 def AddingSupervisor():
     return render_template('AddSupervisor.html')
 
+@app.route("/StudentApp", methods=['GET', 'POST'])
+def ApprovingStudent():
+    return render_template('StudentApproval.html')
+
 @app.route('/addadmin', methods=['POST'])
 def add_admin():
     if request.method == 'POST':
