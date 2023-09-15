@@ -39,16 +39,15 @@ def home():
 
 @app.route('/addadmin', methods=['POST', 'GET'])
 def AddAdmin():
-    if request.method == 'POST':
-        id = request.form['id']
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
+    id = request.form['id']
+    name = request.form['name']
+    email = request.form['email']
+    password = request.form['password']
 
-        cursor = db_conn.cursor()
-        cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
-        db_conn.commit()
-
+    cursor = db_conn.cursor()
+    cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
+    db_conn.commit()
+    
     return render_template('AdminIndex'.html')  
       
 
