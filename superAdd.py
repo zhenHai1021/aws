@@ -55,6 +55,10 @@ def AddingSupervisor():
 def ApprovingStudent():
     return redirect('/studentapproval')
 
+@app.route("/CompanyApp", methods=['GET', 'POST'])
+def ApprovingCompany():
+    return redirect('/companyapproval')
+
 @app.route('/addadmin', methods=['POST'])
 def add_admin():
     if request.method == 'POST':
@@ -266,7 +270,8 @@ def ComApproval():
     finally:
         cursor.close()
 
-@app.route("/updatecompanystatus", methods=['POST'])
+@app.route("/updatecompanystatus", methods=['POST', 'GET'])
+@csrf.exempt  
 def UpdateComStatus():
     try:
         id = request.form['id']
