@@ -192,6 +192,7 @@ def DeleteSupervisor():
 
 
 @app.route("/studentapproval", methods=['GET'])
+@csrf.exempt  
 def StudAproval():
     try:
         statement = "SELECT id, stud_id, status FROM StudApproval WHERE status = %s"
