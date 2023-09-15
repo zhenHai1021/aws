@@ -41,6 +41,10 @@ def home():
 def AddingAdmin():
     return render_template('Dashboard.html')
 
+@app.route("/Supervisor", methods=['GET', 'POST'])
+def ManagingSupervisor():
+    return render_template('ViewSupervisor.html')
+
 @app.route("/Create", methods=['GET', 'POST'])
 def AddingSupervisor():
     return render_template('AddSupervisor.html')
@@ -105,7 +109,8 @@ def AddSupervisor():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, 
+    return render_template('/Supervisor')
+   # return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, 
                            faculty=faculty, age=age, object_url=object_url)
 
 
