@@ -41,9 +41,9 @@ def home():
 def AddingAdmin():
     return render_template('Dashboard.html')
 
-@app.route("/Supervisor", methods=['GET', 'POST'])
-def ManageSupervisor():
-    return render_template('ViewSupervisor.html')
+@app.route("/Create", methods=['GET', 'POST'])
+def AddingSupervisor():
+    return render_template('AddSupervisor.html')
 
 @app.route('/addadmin', methods=['POST'])
 def add_admin():
@@ -62,8 +62,6 @@ def add_admin():
 
     return render_template('AdminIndex.html')  
       
-
-    
 
 @app.route("/addsupervisor", methods=['POST'])
 def AddSupervisor():
