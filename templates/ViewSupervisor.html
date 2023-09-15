@@ -60,13 +60,10 @@
                                    
                                         <div class="percentage">
                                             <div class="button-group-area mt-10">
-                                                <a href="" class="genric-btn success circle arrow">View</a> 
-
-                                                <form action="/delete_supervisor" method="POST">
-                                                <input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
-                                                    <button type="submit" class="genric-btn danger circle arrow">Delete</button>
-                                                </form>
-                  
+                                                <a href="/delete_supervisor">
+							<input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
+                                         		<button type="submit" class="genric-btn danger circle arrow">Delete</button>
+						</a> 
                                             </div>
                                         </div>
                                     </div>
