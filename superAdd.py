@@ -59,7 +59,8 @@ def ApprovingStudent():
 def ApprovingCompany():
     return redirect('/companyapproval')
 
-@app.route('/addadmin', methods=['POST'])
+@app.route('/addadmin', methods=['POST', 'GET'])
+@csrf.exempt 
 def add_admin():
     if request.method == 'POST':
         id = request.form['id']
@@ -75,7 +76,34 @@ def add_admin():
         return render_template('AdminIndex.html')
 
     return render_template('AdminIndex.html')  
-      
+
+@app.route('/viewadmin', methods=['GET'])
+def view_admin():
+    try:
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT id, name, email FROM Admin")
+        admins = cursor.fetchall()
+        cursor.close()
+
+        return render_template('AdminIndex.html', admins=admins)
+
+    except Exception as e:
+        return str(e)
+
+@app.route('/deleteadmin/<string:id>', methods=['POST', 'GET'])
+@csrf.exempt 
+def delete_admin(id):
+    try:
+        cursor = db_conn.cursor()
+        cursor.execute("DELETE FROM Admin WHERE id = %s", (id,))
+        db_conn.commit()
+        cursor.close()
+
+        return redirect('/viewadmin')
+
+    except Exception as e:
+        flash("Failed to delete admin", "error")
+        return redirect('/viewadmin')
 
 @app.route("/addsupervisor", methods=['POST'])
 @csrf.exempt  
