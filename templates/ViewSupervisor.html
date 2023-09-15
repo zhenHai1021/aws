@@ -59,13 +59,15 @@
 
                                    
                                         <div class="percentage">
-                                            <div class="button-group-area mt-10">
-                                                <a href="/deletesupervisor">
-							<input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
-                                         		<button type="submit" class="genric-btn danger circle arrow">Delete</button>
-						</a> 
-                                            </div>
-                                        </div>
+    <div class="button-group-area mt-10">
+        <form action="/deletesupervisor" method="POST">
+            <input type="hidden" name="sv_id" value="{{ supervisor.sv_id }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="genric-btn danger circle arrow">Delete</button>
+        </form>
+    </div>
+</div>
+
                                     </div>
                               
                                 {% endfor %}
