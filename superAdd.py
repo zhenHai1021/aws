@@ -90,12 +90,15 @@ def view_admin():
     except Exception as e:
         return str(e)
 
-@app.route('/deleteadmin/<string:id>', methods=['POST', 'GET'])
+@app.route('/deleteadmin', methods=['POST', 'GET'])
 @csrf.exempt 
-def delete_admin(id):
-    try:
+def delete_admin():
+     if request.method == 'POST':
+        id=request.form['id']
+
+        delete_sql="DELETE FROM Admin WHERE id = %s"
         cursor = db_conn.cursor()
-        cursor.execute("DELETE FROM Admin WHERE id = %s", (id,))
+        cursor.execute(delete_sql, (id,))
         db_conn.commit()
         cursor.close()
 
