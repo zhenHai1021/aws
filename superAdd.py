@@ -46,7 +46,7 @@ def AddAdmin():
         password = request.form['password']
 
         cursor = db_conn.cursor()
-        cursor.execute("INSERT INTO Admin (aid, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
+        cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
         db_conn.commit()
 
         return "Admin added successfully!"  
