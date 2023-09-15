@@ -37,6 +37,20 @@ def allowed_file(filename):
 def home():
     return render_template('AddSupervisor.html')
 
+@app.route('/addadmin', methods=['POST'])
+def AddAdmin():
+    if request.method == 'POST':
+        id = request.form['id']
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        cursor.execute("INSERT INTO Admin (aid, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
+        db_conn.commit()
+
+        return "Admin added successfully!"  
+
+    return "Invalid request"
 
 @app.route("/addsupervisor", methods=['POST'])
 def AddSupervisor():
