@@ -91,7 +91,23 @@
 							<div class="percentage">Email</div>
 							<div class="percentage">Password</div>
 						</div>
-					</div>
+						{% for admin in admins %}
+						<div class="table-row">
+                                        		<div class="serial">{{ loop.index }}</div>
+                                       			 <div class="serial">{{ admin[0] }}</div>
+                                       			 <div class="country">{{ admin[1] }}</div>
+                                        		<div class="visit">{{ admin[2] }}</div>
+						</div>
+						                                      <div class="percentage">
+    <div class="button-group-area mt-10">
+        <form action="/deleteadmin" method="POST">
+            <input type="hidden" name="id" value="{{ admin[0] }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="genric-btn danger circle arrow">Delete</button>
+        </form>
+    </div>
+</div>
+						
 				</div>
 			</div>
 		</div>
