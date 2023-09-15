@@ -37,20 +37,23 @@ def allowed_file(filename):
 def home():
     return render_template('AddSupervisor.html')
 
-@app.route("/addsupervisor", methods=['POST'])
+@app.route("/addadmin", methods=['POST'])
 def AddAdmin():
-    id = request.form['id']
-    name = request.form['name']
-    email = request.form['email']
-    password = request.form['password']
-    
-    insert_sql = "INSERT INTO Admin VALUES (%s, %s, %s, %s)"
-    cursor = db_conn.cursor()
     try:
+        id = request.form['id']
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        
+        insert_sql = "INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)"
+        cursor = db_conn.cursor()
+        
         cursor.execute(insert_sql, (id, name, email, password))
         db_conn.commit()
+        
+        cursor.close()
 
-    return render_template('AddAdminOutput.html', id=id, name=name, email=email, password=password)
+        return render_template('AddAdminOutput.html', id=id, name=name, email=email, password=password)
 
 
 @app.route("/addsupervisor", methods=['POST'])
