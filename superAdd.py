@@ -38,16 +38,20 @@ def home():
     return render_template('AdminIndex.html')
 
 @app.route('/addadmin', methods=['POST', 'GET'])
-def AddAdmin():
-    id = request.form['id']
-    name = request.form['name']
-    email = request.form['email']
-    password = request.form['password']
+def add_admin():
+    if request.method == 'POST':
+        id = request.form['id']
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
 
-    cursor = db_conn.cursor()
-    cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
-    db_conn.commit()
-    
+        cursor = db_conn.cursor()
+        cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
+        db_conn.commit()
+
+        # Redirect to a success page or do something else as needed
+        return "Admin added successfully!"
+
     return render_template('AdminIndex.html')  
       
 
