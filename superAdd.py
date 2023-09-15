@@ -1,7 +1,7 @@
 from curses import flash
-from flask import Flask, redirect, render_template, request, flash as flask_flash
+from flask_wtf.csrf import CSRFProtect, CSRFError
+from flask import Flask, render_template, request, redirect, flash, jsonify
 from pymysql import connections
-from flask_wtf.csrf import CSRFProtect
 import os
 import boto3
 import botocore
@@ -70,6 +70,7 @@ def add_admin():
       
 
 @app.route("/addsupervisor", methods=['POST'])
+@csrf.exempt  
 def AddSupervisor():
     sv_id = request.form['sv_id']
     sv_name = request.form['sv_name']
@@ -92,8 +93,7 @@ def AddSupervisor():
     try:
         cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
         db_conn.commit()
-
-        # Upload image file in S3
+        
         profile_image_in_s3 = "sv_id-" + str(sv_id) + "_image_file"
         s3 = boto3.resource('s3')
 
@@ -110,7 +110,6 @@ def AddSupervisor():
     finally:
         cursor.close()
 
-    print("all modification done...")
     return render_template('/Supervisor')
    # return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, faculty=faculty, age=age, object_url=object_url)
 
