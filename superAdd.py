@@ -80,7 +80,6 @@ def AddSupervisor():
         cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
         db_conn.commit()
 
-        
         # Upload image file in S3
         profile_image_in_s3 = "sv_id-" + str(sv_id) + "_image_file"
         s3 = boto3.resource('s3')
@@ -100,7 +99,8 @@ def AddSupervisor():
 
     print("all modification done...")
     return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, 
-                           faculty= faculty, age=age, object_url=object_url)
+                           faculty=faculty, age=age, object_url=object_url)
+
 
 @app.route("/searchsupervisor", methods=['POST'])
 def GetSupervisor():
