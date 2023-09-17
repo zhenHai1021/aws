@@ -102,11 +102,11 @@
 							<div class="visit">{{ admin[3] }}</div>
 							<div class="percentage">
 								<div class="button-group-area mt-10">
-									<form action="/deleteadmin" method="POST">
+									<a href="/deleteadmin" method="POST" class="genric-btn primary circle arrow">
 										<input type="hidden" name="id" value="{{ admin[0] }}">
-										<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
-										<button type="submit" class="genric-btn danger circle arrow">Delete</button>
-									</form>
+										<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">Delete
+									</a>
+								
 									<form>
 										<button type="submit" class="genric-btn danger circle arrow">Edit</button>
 									</form>
