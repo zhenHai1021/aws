@@ -94,28 +94,26 @@
 							</div>
 
 							{% for approval in com_approvals %}
-							<div class="table-row">
-								<div class="serial">{{ loop.index }}</div>
-								<div class="percentage">{{ approval.id }}</div>
-								<div class="percentage">{{ approval.com_id }}</div>
-								<div class="country">{{ approval.status }}</div>
+    <div class="table-row">
+        <div class="serial">{{ loop.index }}</div>
+        <div class="percentage">{{ approval.id }}</div>
+        <div class="percentage">{{ approval.com_id }}</div>
+        <div class="country">{{ approval.status }}</div>
 
-								<div class="country" id="default-select" "="">
-									<form action=" /updatecompanystatus" method="POST">
-									<input type="hidden" name="id" value="{{ approval.id }}">
-									<select style="display: none;" name="status">
-										<option value="pending">Pending</option>
-										<option value="approved">Approve</option>
-										<option value="rejected">Reject</option>
-									</select>
-									
-									</form>
-								</div>
-								<div class="country"><button type="submit">Update</button></div>
-							</div>
-						</div>
+        <div class="country" id="default-select">
+            <form action="/updatecompanystatus" method="POST">
+                <input type="hidden" name="id" value="{{ approval.id }}">
+                <select name="status">
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approve</option>
+                    <option value="rejected">Reject</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+{% endfor %}
 
-						{% endfor %}
 
 					</div>
 				</div>
