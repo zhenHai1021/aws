@@ -88,8 +88,8 @@
 								<div class="serial">Student Approval ID</div>
 								<div class="country">Student ID</div>
 								<div class="country">Status</div>
+								<div class="country">Approval</div>
 								<div class="country">Action</div>
-								<div class="country"></div>
 							</div>
 
 							{% for approval in stud_approvals %}
@@ -99,7 +99,7 @@
 								<div class="country">{{ approval.stud_id }}</div>
 								<div class="country">{{ approval.status }}</div>
 
-								<div class="default-select" id="default-select" "="">
+								<div class="country" id="default-select" "="">
 									<form action=" /updatestudentstatus" method="POST">
 									<input type="hidden" name="id" value="{{ approval.id }}">
 									<select style="display: none;" name="status">
