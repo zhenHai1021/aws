@@ -88,11 +88,11 @@
 							<div class="serial">No.</div>
 							<div class="serial">ID</div>
 							<div class="country">Name</div>
-							<div class="visit">Email</div>
-							<div class="percentage">Programme</div>
-							<div class="percentage">Faculty</div>
+							<div class="country">Email</div>
+							<div class="country">Programme</div>
+							<div class="country">Faculty</div>
 							<div class="serial">Age</div>
-							<div class="visit">Profile Image</div>
+							<div class="percentage">Profile Image</div>
 						</div>
 
 						{% for supervisor in supervisors %}
@@ -100,11 +100,11 @@
 							<div class="serial">{{ loop.index }}</div>
 							<div class="serial">{{ supervisor.sv_id }}</div>
 							<div class="country">{{ supervisor.sv_name }}</div>
-							<div class="visit">{{ supervisor.sv_email }}</div>
-							<div class="percentage">{{ supervisor.programme }}</div>
-							<div class="percentage">{{ supervisor.faculty }}</div>
+							<div class="country">{{ supervisor.sv_email }}</div>
+							<div class="country">{{ supervisor.programme }}</div>
+							<div class="country">{{ supervisor.faculty }}</div>
 							<div class="serial">{{ supervisor.age }}</div>
-							<div class="visit"><img src="data:image/jpeg;base64,{{ supervisor.profile_image }}"
+							<div class="percentage"><img src="data:image/jpeg;base64,{{ supervisor.profile_image }}"
 									alt="Profile Image"></div>
 
 
